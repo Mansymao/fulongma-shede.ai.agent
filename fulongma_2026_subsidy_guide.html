@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>福龙马集团股份有限公司 - 2026年奖补项目申报清单</title>
+    <style>
+        :root {
+            --primary: #1a3a5c;
+            --primary-light: #2d5f8a;
+            --accent: #e8943a;
+            --accent-light: #f5b971;
+            --bg: #f4f6f9;
+            --card-bg: #ffffff;
+            --text: #2c3e50;
+            --text-light: #6c7a89;
+            --border: #dce3ec;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --info: #3498db;
+            --danger: #e74c3c;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+        }
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.15);
+        }
+        .header-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .header h1 { font-size: 24px; font-weight: 700; letter-spacing: 1px; }
+        .header h1 span { color: var(--accent-light); font-weight: 400; font-size: 16px; margin-left: 12px; }
+        .header-meta { font-size: 13px; opacity: 0.85; }
+        .nav { background: var(--primary); border-top: 1px solid rgba(255,255,255,0.1); }
+        .nav-inner { max-width: 1400px; margin: 0 auto; padding: 0 40px; display: flex; gap: 0; overflow-x: auto; }
+        .nav a { color: rgba(255,255,255,0.75); text-decoration: none; padding: 14px 22px; font-size: 14px; white-space: nowrap; transition: all 0.2s; border-bottom: 3px solid transparent; }
+        .nav a:hover, .nav a.active { color: white; background: rgba(255,255,255,0.05); border-bottom-color: var(--accent); }
+        .container { max-width: 1400px; margin: 0 auto; padding: 30px 40px 60px; }
+        .section { margin-bottom: 40px; scroll-margin-top: 120px; }
+        .section-title { font-size: 22px; font-weight: 700; color: var(--primary); margin-bottom: 20px; padding-bottom: 12px; border-bottom: 3px solid var(--accent); display: flex; align-items: center; gap: 10px; }
+        .section-title .icon { width: 32px; height: 32px; background: var(--accent); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 16px; }
+        .card { background: var(--card-bg); border-radius: 12px; padding: 28px 32px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); border: 1px solid var(--border); margin-bottom: 20px; }
+        .card h3 { font-size: 17px; color: var(--primary); margin-bottom: 12px; font-weight: 600; }
+        .card p { color: var(--text); font-size: 15px; line-height: 1.85; }
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 20px; }
+        .info-item { background: var(--card-bg); border-radius: 12px; padding: 22px 26px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); border: 1px solid var(--border); border-left: 4px solid var(--accent); }
+        .info-item .label { font-size: 12px; color: var(--text-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+        .info-item .value { font-size: 16px; font-weight: 600; color: var(--primary); }
+        .badge-group { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+        .badge { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 20px; font-size: 13px; font-weight: 500; }
+        .badge-national { background: linear-gradient(135deg, #e74c3c22, #e74c3c11); color: #c0392b; border: 1px solid #e74c3c44; }
+        .badge-province { background: linear-gradient(135deg, #3498db22, #3498db11); color: #2471a3; border: 1px solid #3498db44; }
+        .badge-city { background: linear-gradient(135deg, #27ae6022, #27ae6011); color: #1e8449; border: 1px solid #27ae6044; }
+        .badge-other { background: linear-gradient(135deg, #8e44ad22, #8e44ad11); color: #6c3483; border: 1px solid #8e44ad44; }
+        .biz-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+        .biz-card { background: var(--card-bg); border-radius: 12px; padding: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); border: 1px solid var(--border); transition: transform 0.2s, box-shadow 0.2s; }
+        .biz-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.1); }
+        .biz-card .biz-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 14px; }
+        .biz-card h4 { font-size: 16px; color: var(--primary); margin-bottom: 8px; }
+        .biz-card p { font-size: 13px; color: var(--text-light); line-height: 1.6; }
+        .table-wrapper { overflow-x: auto; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); border: 1px solid var(--border); background: white; }
+        table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 1600px; }
+        thead th { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; padding: 14px 16px; text-align: left; font-weight: 600; font-size: 13px; letter-spacing: 0.5px; white-space: nowrap; }
+        tbody td { padding: 14px 16px; border-bottom: 1px solid var(--border); vertical-align: top; }
+        tbody tr:hover { background: #f0f5ff; }
+        tbody tr:last-child td { border-bottom: none; }
+        .level-tag { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; white-space: nowrap; }
+        .level-national { background: #fde8e8; color: #c0392b; }
+        .level-province { background: #e8f0fe; color: #2471a3; }
+        .level-city { background: #e8f8e8; color: #1e8449; }
+        .amount { font-weight: 700; color: var(--accent); font-size: 15px; }
+        .category-tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 500; background: #f0f0f0; color: #555; }
+        .tech-tag { display: inline-block; padding: 2px 7px; border-radius: 4px; font-size: 11px; font-weight: 500; background: #e8f4fd; color: #2471a3; margin: 1px 2px; white-space: nowrap; }
+        .tech-tag.ai { background: #fde8f4; color: #c0392b; }
+        .tech-tag.hw { background: #e8fde8; color: #1e8449; }
+        .tech-tag.sw { background: #f3e8fd; color: #6c3483; }
+        .stats-bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-bottom: 30px; }
+        .stat-card { background: white; border-radius: 12px; padding: 24px; text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,0.06); border: 1px solid var(--border); }
+        .stat-card .stat-num { font-size: 36px; font-weight: 800; background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .stat-card .stat-label { font-size: 13px; color: var(--text-light); margin-top: 4px; }
+        .filter-bar { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+        .filter-btn { padding: 8px 18px; border: 1px solid var(--border); border-radius: 20px; background: white; color: var(--text); font-size: 13px; cursor: pointer; transition: all 0.2s; }
+        .filter-btn:hover, .filter-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+        .timeline { position: relative; padding-left: 30px; }
+        .timeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 3px; background: linear-gradient(to bottom, var(--accent), var(--primary)); border-radius: 2px; }
+        .timeline-item { position: relative; margin-bottom: 24px; padding: 18px 24px; background: var(--card-bg); border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border: 1px solid var(--border); }
+        .timeline-item::before { content: ''; position: absolute; left: -26px; top: 24px; width: 14px; height: 14px; background: var(--accent); border-radius: 50%; border: 3px solid white; box-shadow: 0 0 0 2px var(--accent); }
+        .timeline-item .year { font-size: 13px; font-weight: 700; color: var(--accent); margin-bottom: 4px; }
+        .timeline-item h4 { font-size: 15px; color: var(--primary); margin-bottom: 6px; }
+        .timeline-item p { font-size: 13px; color: var(--text-light); }
+        .status-done { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; background: #27ae6022; color: #27ae60; font-weight: 600; }
+        .status-progress { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; background: #f39c1222; color: #f39c12; font-weight: 600; }
+        .policy-ref a { color: var(--info); text-decoration: none; border-bottom: 1px dashed var(--info); font-size: 13px; transition: all 0.2s; word-break: break-all; }
+        .policy-ref a:hover { color: var(--primary); border-bottom-style: solid; }
+        .policy-card a { color: var(--info); text-decoration: none; border-bottom: 1px dashed var(--info); transition: all 0.2s; }
+        .policy-card a:hover { color: var(--primary); border-bottom-style: solid; }
+        .ext-icon { display: inline-block; font-size: 10px; margin-left: 2px; opacity: 0.6; }
+        .roadmap { margin-top: 24px; }
+        .roadmap-quarter { display: flex; gap: 12px; margin-bottom: 14px; align-items: flex-start; }
+        .roadmap-label { min-width: 72px; font-size: 14px; font-weight: 700; color: var(--primary); padding-top: 6px; text-align: center; background: white; border-radius: 8px; padding: 8px 4px; border: 1px solid var(--border); box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+        .roadmap-items { flex: 1; display: flex; flex-wrap: wrap; gap: 8px; }
+        .roadmap-item { padding: 8px 14px; border-radius: 8px; font-size: 12px; font-weight: 500; border: 1px solid; line-height: 1.5; max-width: 280px; }
+        .roadmap-item.national { background: #fde8e811; border-color: #e74c3c44; color: #c0392b; }
+        .roadmap-item.province { background: #e8f0fe11; border-color: #3498db44; color: #2471a3; }
+        .roadmap-item.city { background: #e8f8e811; border-color: #27ae6044; color: #1e8449; }
+        .unit-summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-top: 20px; }
+        .unit-card { background: white; border-radius: 10px; padding: 18px 20px; border: 1px solid var(--border); box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+        .unit-card .unit-name { font-size: 13px; font-weight: 700; color: var(--primary); margin-bottom: 8px; }
+        .unit-card .unit-count { font-size: 24px; font-weight: 800; background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .unit-card .unit-desc { font-size: 12px; color: var(--text-light); margin-top: 4px; }
+        .lifecycle-bar { margin-top: 20px; padding: 20px 24px; background: #f8f9fc; border-radius: 10px; border: 1px solid var(--border); }
+        .lifecycle-bar h4 { font-size: 14px; color: var(--primary); margin-bottom: 16px; font-weight: 600; }
+        .lifecycle-steps { display: flex; gap: 0; position: relative; }
+        .lifecycle-step { flex: 1; text-align: center; position: relative; padding: 0 4px; }
+        .lifecycle-step .bar { height: 8px; border-radius: 4px; margin-bottom: 10px; }
+        .lifecycle-step:nth-child(1) .bar { background: #3498db; }
+        .lifecycle-step:nth-child(2) .bar { background: #9b59b6; }
+        .lifecycle-step:nth-child(3) .bar { background: #27ae60; }
+        .lifecycle-step:nth-child(4) .bar { background: #e74c3c; }
+        .lifecycle-step .step-label { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+        .lifecycle-step .step-pct { font-size: 18px; font-weight: 800; background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .contact-bar { margin-top: 20px; padding: 16px 28px; background: white; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); border: 1px solid var(--border); display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
+        .contact-bar-title { font-size: 14px; font-weight: 700; color: var(--primary); white-space: nowrap; padding-right: 12px; border-right: 2px solid var(--border); }
+        .contact-bar-name { font-size: 18px; font-weight: 800; color: var(--primary); letter-spacing: 1px; }
+        .contact-bar-info { font-size: 13px; color: var(--text); }
+        .contact-bar-info .cb-label { color: var(--text-light); margin-right: 4px; }
+        .contact-bar-info a { color: var(--primary); text-decoration: none; font-weight: 700; font-size: 15px; }
+        .contact-bar-info a:hover { color: var(--accent); }
+        .contact-bar-sep { width: 1px; height: 28px; background: var(--border); }
+        .collapse-group { margin-top: 48px; padding-top: 32px; border-top: 2px dashed var(--border); }
+        .collapse-group-title { font-size: 16px; font-weight: 600; color: var(--text-light); margin-bottom: 16px; text-align: center; letter-spacing: 2px; }
+        .collapse-section { margin-bottom: 12px; border-radius: 12px; overflow: hidden; background: var(--card-bg); box-shadow: 0 2px 12px rgba(0,0,0,0.06); border: 1px solid var(--border); }
+        .collapse-section summary { padding: 18px 28px; cursor: pointer; font-size: 16px; font-weight: 600; color: var(--primary); display: flex; align-items: center; gap: 12px; list-style: none; border-left: 4px solid var(--accent); transition: background 0.2s; }
+        .collapse-section summary::-webkit-details-marker { display: none; }
+        .collapse-section summary:hover { background: #f8f9fc; }
+        .collapse-section summary::before { content: '\25B6'; font-size: 12px; color: var(--accent); transition: transform 0.3s; flex-shrink: 0; }
+        .collapse-section[open] summary::before { transform: rotate(90deg); }
+        .collapse-section[open] summary { border-bottom: 1px solid var(--border); background: #f8f9fc; }
+        .collapse-section .collapse-body { padding: 24px 28px; animation: fadeSlideIn 0.3s ease; }
+        @keyframes fadeSlideIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+        .footer { background: var(--primary); color: rgba(255,255,255,0.7); text-align: center; padding: 24px; font-size: 13px; }
+
+        @media print { .header, .nav, .filter-bar { position: static; } .section { page-break-inside: avoid; } .collapse-section { break-inside: avoid; } }
+        @media (max-width: 768px) { .container { padding: 16px; } .header-inner { padding: 16px; flex-direction: column; gap: 8px; } .nav-inner { padding: 0 16px; } .stats-bar { grid-template-columns: repeat(2, 1fr); } .info-grid { grid-template-columns: 1fr; } .contact-bar { flex-direction: column; align-items: flex-start; gap: 12px; } .contact-bar-sep { display: none; } }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div class="header-inner">
+        <h1>福龙马集团股份有限公司 <span>2026年度奖补项目申报清单</span></h1>
+        <div class="header-meta">编制日期：2026年6月22日 &nbsp;|&nbsp; 股票代码：603686.SH</div>
+    </div>
+    <div class="nav">
+        <div class="nav-inner">
+            <a href="#projects" class="active">可申报项目清单</a>
+            <a href="#policy">政策依据汇总</a>
+            <a href="#tips">重要提示</a>
+            <a href="#company">企业详情 &#9660;</a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+
+
+    <!-- ===== 1. 可申报项目清单 ===== -->
+    <div class="section" id="projects">
+        <div class="section-title">
+            <div class="icon">1</div>
+            2026年可申报奖补项目清单
+        </div>
+
+        <div class="stats-bar">
+            <div class="stat-card">
+                <div class="stat-num">13</div>
+                <div class="stat-label">可申报项目总数</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-num">~1250+</div>
+                <div class="stat-label">预计奖补总额（万元）</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-num">5</div>
+                <div class="stat-label">国家级项目</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-num">8</div>
+                <div class="stat-label">省/市级项目</div>
+            </div>
+        </div>
+
+        <div class="filter-bar">
+            <button class="filter-btn active" onclick="filterTable('all')">全部</button>
+            <button class="filter-btn" onclick="filterTable('national')">国家级</button>
+            <button class="filter-btn" onclick="filterTable('province')">省级</button>
+            <button class="filter-btn" onclick="filterTable('city')">市级</button>
+        </div>
+
+        <div class="table-wrapper">
+            <table id="projectTable">
+                <thead>
+                    <tr>
+                        <th style="width:40px">序号</th>
+                        <th style="min-width:180px">可申报项目名称</th>
+                        <th style="min-width:100px">项目类别</th>
+                        <th style="min-width:110px">归口部门</th>
+                        <th style="min-width:80px">申报层级</th>
+                        <th style="min-width:80px">申报周期</th>
+                        <th style="min-width:100px">预计奖补金额（万元）</th>
+                        <th style="min-width:120px">关键技术方向</th>
+                        <th style="min-width:220px">申报核心条件</th>
+                        <th style="min-width:200px">所需材料</th>
+                        <th style="min-width:200px">政策依据（官方文件）</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- 1. 国家级 - 制造业单项冠军 -->
+                    <tr data-level="national">
+                        <td>1</td>
+                        <td><strong>国家制造业单项冠军企业认定</strong></td>
+                        <td><span class="category-tag">企业培育</span></td>
+                        <td>工信部</td>
+                        <td><span class="level-tag level-national">国家级</span></td>
+                        <td>5-7月</td>
+                        <td class="amount">100-300</td>
+                        <td>
+                            <span class="tech-tag hw">环卫装备整机</span>
+                            <span class="tech-tag hw">新能源底盘</span>
+                            <span class="tech-tag ai">智能作业系统</span>
+                        </td>
+                        <td>细分领域市场占有率全球前3或国内前2；近3年平均主营收入&#8805;4亿元；拥有核心自主知识产权；技术水平国际先进或国内领先</td>
+                        <td>单项冠军申报书、市场占有率证明材料、核心专利清单及证书、研发机构资质、财务报告、标准制定证明</td>
+                        <td class="policy-ref"><a href="https://www.miit.gov.cn/" target="_blank" rel="noopener">工业和信息化部制造业单项冠军企业遴选管理办法<span class="ext-icon">&#8599;</span></a></td>
+                    </tr>
+                    <!-- 2. 国家级 - 绿色供应链管理企业 -->
+                    <tr data-level="national">
+                        <td>2</td>
+                        <td><strong>国家绿色供应链管理企业认定</strong></td>
+                        <td><span class="category-tag">绿色制造</span></td>
+                        <td>工信部</td>
+                        <td><span class="level-tag level-national">国家级</span></td>
+                        <td>6-9月</td>
+                        <td class="amount">50-200</td>
+                        <td>
+                            <span class="tech-tag hw">新能源环卫车辆</span>
+                            <span class="tech-tag sw">绿色供应链管理平台</span>
+                            <span class="tech-tag sw">碳足迹追踪系统</span>
+                        </td>
+                        <td>已获评国家级绿色工厂；建立绿色采购标准和供应商绿色评价体系；制定供应商绿色工厂培育计划；近三年无重大环保事故</td>
+                        <td>绿色供应链管理企业申报书、绿色采购制度文件、供应商绿色评价报告、环境管理体系认证、碳排放报告</td>
+                        <td class="policy-ref">工信部绿色制造体系建设管理办法（工信部办公厅年度申报通知）</td>
+                    </tr>
+                    <!-- 3. 国家级 - 首台(套)重大技术装备 -->
+                    <tr data-level="national">
+                        <td>3</td>
+                        <td><strong>国家首台(套)重大技术装备保险补偿</strong></td>
+                        <td><span class="category-tag">装备创新</span></td>
+                        <td>工信部/财政部</td>
+                        <td><span class="level-tag level-national">国家级</span></td>
+                        <td>全年</td>
+                        <td class="amount">50-300</td>
+                        <td>
+                            <span class="tech-tag hw">无人驾驶环卫车</span>
+                            <span class="tech-tag hw">滑板底盘环卫装备</span>
+                            <span class="tech-tag ai">自动驾驶感知系统</span>
+                        </td>
+                        <td>产品列入工信部《首台(套)重大技术装备推广应用指导目录》；已投保首台(套)重大技术装备综合险；拥有核心自主知识产权</td>
+                        <td>保险补偿申请表、保险合同及保费发票、产品技术参数说明、自主知识产权证明、用户使用报告</td>
+                        <td class="policy-ref">财政部 工信部首台(套)重大技术装备保险补偿政策</td>
+                    </tr>
+                    <!-- 4. 国家级 - 中央预算内投资-节能降碳专项 -->
+                    <tr data-level="national">
+                        <td>4</td>
+                        <td><strong>中央预算内投资（节能降碳专项）</strong></td>
+                        <td><span class="category-tag">节能降碳</span></td>
+                        <td>国家发改委</td>
+                        <td><span class="level-tag level-national">国家级</span></td>
+                        <td>9-12月（下年度）</td>
+                        <td class="amount">100-500</td>
+                        <td>
+                            <span class="tech-tag hw">新能源环卫车辆产线</span>
+                            <span class="tech-tag hw">节能制造装备</span>
+                            <span class="tech-tag sw">能源管理系统</span>
+                        </td>
+                        <td>项目已完成立项/备案/环评/能评等前期手续；属于制造业节能降碳技术改造方向；核定总投资的15%-30%补助；项目已开工或具备开工条件</td>
+                        <td>资金申请报告、项目备案/核准文件、环评批复、能评报告、资金筹措方案、项目实施方案</td>
+                        <td class="policy-ref"><a href="https://www.ndrc.gov.cn/" target="_blank" rel="noopener">污染治理和节能减碳中央预算内投资专项管理办法<span class="ext-icon">&#8599;</span></a></td>
+                    </tr>
+                    <!-- 5. 国家级 - 中央预算内投资-污染治理专项 -->
+                    <tr data-level="national">
+                        <td>5</td>
+                        <td><strong>中央预算内投资（污染治理专项）</strong></td>
+                        <td><span class="category-tag">环境治理</span></td>
+                        <td>国家发改委</td>
+                        <td><span class="level-tag level-national">国家级</span></td>
+                        <td>9-12月（下年度）</td>
+                        <td class="amount">100-300</td>
+                        <td>
+                            <span class="tech-tag hw">垃圾处理装备</span>
+                            <span class="tech-tag hw">污水处理设备</span>
+                            <span class="tech-tag sw">环境监控平台</span>
+                        </td>
+                        <td>项目属于环境基础设施建设或污染治理方向；已完成前期审批手续；中央补助不超过核定总投资的20%</td>
+                        <td>资金申请报告、项目可研报告、环评批复文件、土地审批文件、资金筹措方案</td>
+                        <td class="policy-ref"><a href="https://www.ndrc.gov.cn/" target="_blank" rel="noopener">污染治理和节能减碳中央预算内投资专项管理办法<span class="ext-icon">&#8599;</span></a></td>
+                    </tr>
+                    <!-- 6. 省级 - 制造业单项冠军 -->
+                    <tr data-level="province">
+                        <td>6</td>
+                        <td><strong>福建省制造业单项冠军企业认定</strong></td>
+                        <td><span class="category-tag">企业培育</span></td>
+                        <td>福建省工信厅</td>
+                        <td><span class="level-tag level-province">省级</span></td>
+                        <td>6-7月</td>
+                        <td class="amount">100</td>
+                        <td>
+                            <span class="tech-tag hw">环卫专用车辆</span>
+                            <span class="tech-tag hw">智能清扫装备</span>
+                            <span class="tech-tag sw">环卫作业管理系统</span>
+                        </td>
+                        <td>细分产品市场占有率省内第一或全国前列；年主营业务收入&#8805;1亿元；拥有核心自主知识产权；研发投入占比&#8805;3%</td>
+                        <td>省级单项冠军申报书、产品市场占有率自证材料、专利及知识产权清单、财务审计报告、研发费用专项报告</td>
+                        <td class="policy-ref"><a href="https://gxt.fj.gov.cn/zwgk/zfxxgk/fdzdgknr/gzdt/202606/t20260603_7155747.htm" target="_blank" rel="noopener">福建省工信厅关于开展2026年省级制造业单项冠军企业申报工作的通知<span class="ext-icon">&#8599;</span></a></td>
+                    </tr>
+                    <!-- 7. 省级 - 首台(套)重大技术装备补助 -->
+                    <tr data-level="province">
+                        <td>7</td>
+                        <td><strong>福建省首台(套)重大技术装备认定与补助</strong></td>
+                        <td><span class="category-tag">装备创新</span></td>
+                        <td>福建省工信厅</td>
+                        <td><span class="level-tag level-province">省级</span></td>
+                        <td>3-6月</td>
+                        <td class="amount">50-200</td>
+                        <td>
+                            <span class="tech-tag hw">无人驾驶环卫车</span>
+                            <span class="tech-tag hw">氢燃料环卫车</span>
+                            <span class="tech-tag ai">自动驾驶控制系统</span>
+                        </td>
+                        <td>产品具有自主知识产权且达到国内先进水平及以上；属于《福建省首台(套)指导目录》领域；产品为首次研制或重大技术突破</td>
+                        <td>首台(套)认定申请表、产品技术方案及创新点说明、自主知识产权证明、产品检测报告、销售合同或用户使用证明</td>
+                        <td class="policy-ref"><a href="http://gxt.fujian.gov.cn/zwgk/gsgg/202606/t20260618_7165051.htm" target="_blank" rel="noopener">《福建省首台(套)重大技术装备认定和扶持实施细则》（闽工信规〔2023〕3号）及2026年新政<span class="ext-icon">&#8599;</span></a></td>
+                    </tr>
+                    <!-- 8. 省级 - 节能装备高质量发展专项 -->
+                    <tr data-level="province">
+                        <td>8</td>
+                        <td><strong>节能装备高质量发展专项（四部门）</strong></td>
+                        <td><span class="category-tag">节能装备</span></td>
+                        <td>工信部/发改委/国资委/能源局</td>
+                        <td><span class="level-tag level-province">省级</span></td>
+                        <td>4-6月</td>
+                        <td class="amount">50-200</td>
+                        <td>
+                            <span class="tech-tag hw">高效电机/热泵</span>
+                            <span class="tech-tag hw">新能源环卫装备</span>
+                            <span class="tech-tag sw">智慧能源管理系统</span>
+                        </td>
+                        <td>属于六大支持领域（电机、变压器、热泵、节能汽车、工业节能装备、建筑节能装备）；能效二级以上；年节能&#8805;150吨标煤</td>
+                        <td>项目申报书、能效检测报告、产品技术方案、项目立项文件、投资估算及资金筹措方案</td>
+                        <td class="policy-ref"><a href="http://finance.people.com.cn/n1/2026/0321/c1004-40686128.html" target="_blank" rel="noopener">《节能装备高质量发展实施方案（2026-2028年）》（工信部等四部门）<span class="ext-icon">&#8599;</span></a></td>
+                    </tr>
+                    <!-- 9. 省级 - 先进级智能工厂 -->
+                    <tr data-level="province">
+                        <td>9</td>
+                        <td><strong>福建省先进级智能工厂认定</strong></td>
+                        <td><span class="category-tag">智能制造</span></td>
+                        <td>福建省工信厅</td>
+                        <td><span class="level-tag level-province">省级</span></td>
+                        <td>1-3月</td>
+                        <td class="amount">50-200</td>
+                        <td>
+                            <span class="tech-tag hw">智能产线</span>
+                            <span class="tech-tag ai">工业机器人</span>
+                            <span class="tech-tag sw">MES/ERP系统</span>
+                        </td>
+                        <td>具有独立法人资格；已建成基础级智能工厂；智能制造关键装备应用&#8805;3类；关键工序数控化率&#8805;70%；具备智能制造典型场景</td>
+                        <td>智能工厂申报书、智能工厂建设方案、关键装备清单及发票、信息化系统截图、典型场景说明材料</td>
+                        <td class="policy-ref">闽工信函装备〔2026〕36号 福建省先进级智能工厂申报通知</td>
+                    </tr>
+                    <!-- 10. 省级 - 揭榜挂帅技术攻关 -->
+                    <tr data-level="province">
+                        <td>10</td>
+                        <td><strong>福建省"揭榜挂帅"重大技术攻关项目</strong></td>
+                        <td><span class="category-tag">科技创新</span></td>
+                        <td>福建省科技厅</td>
+                        <td><span class="level-tag level-province">省级</span></td>
+                        <td>4-6月</td>
+                        <td class="amount">200-500</td>
+                        <td>
+                            <span class="tech-tag hw">无人驾驶环卫机器人</span>
+                            <span class="tech-tag ai">环境感知与决策AI</span>
+                            <span class="tech-tag sw">智慧环卫数字孪生</span>
+                        </td>
+                        <td>属于省内龙头企业或骨干企业；技术需求聚焦"555X"产业集群方向；项目具有明确的技术攻关目标和产业化前景</td>
+                        <td>揭榜挂帅项目申报书、技术攻关方案、产学研合作协议（如有）、研发基础条件说明、经费预算</td>
+                        <td class="policy-ref"><a href="https://kjt.fujian.gov.cn/xxgk/tzgg/202605/t20260527_7153089.htm" target="_blank" rel="noopener">福建省科学技术厅关于征集2026年度省"揭榜挂帅"项目重大技术需求的通知<span class="ext-icon">&#8599;</span></a></td>
+                    </tr>
+                    <!-- 11. 省级 - 企业研发投入补助 -->
+                    <tr data-level="province">
+                        <td>11</td>
+                        <td><strong>福建省企业研发投入分段补助</strong></td>
+                        <td><span class="category-tag">科技创新</span></td>
+                        <td>福建省科技厅</td>
+                        <td><span class="level-tag level-province">省级</span></td>
+                        <td>4-6月</td>
+                        <td class="amount">50-200</td>
+                        <td>
+                            <span class="tech-tag hw">新能源环卫装备</span>
+                            <span class="tech-tag ai">自动驾驶技术</span>
+                            <span class="tech-tag sw">智慧环卫平台</span>
+                        </td>
+                        <td>在福建省注册的规上企业；上年度研发费用占营收比例&#8805;3%；研发费用同比增长；已完成研发费用加计扣除备案</td>
+                        <td>企业研发投入补助申请表、上年度研发费用专项审计报告、研发项目立项文件、加计扣除备案证明</td>
+                        <td class="policy-ref">福建省企业研发投入分段补助管理办法（闽科资年度通知）</td>
+                    </tr>
+                    <!-- 12. 市级 - 技术改造设备投资补助 -->
+                    <tr data-level="city">
+                        <td>12</td>
+                        <td><strong>龙岩市技术改造项目设备投资补助</strong></td>
+                        <td><span class="category-tag">技术改造</span></td>
+                        <td>龙岩市工信局</td>
+                        <td><span class="level-tag level-city">市级</span></td>
+                        <td>2-4月</td>
+                        <td class="amount">20-100</td>
+                        <td>
+                            <span class="tech-tag hw">智能制造产线</span>
+                            <span class="tech-tag hw">自动化焊接设备</span>
+                            <span class="tech-tag sw">生产管理系统</span>
+                        </td>
+                        <td>项目符合国家产业政策和本市产业发展规划；已完成核准或备案且已开工建设；设备投资&#8805;200万元</td>
+                        <td>技术改造项目设备投资补助申请表、项目设备清单、项目备案文件、设备采购发票及合同</td>
+                        <td class="policy-ref"><a href="https://gxj.longyan.gov.cn/xxgk/czzj/202602/t20260214_2277772.htm" target="_blank" rel="noopener">龙岩市2026年省级技术改造设备投资补助资金申报指南<span class="ext-icon">&#8599;</span></a></td>
+                    </tr>
+                    <!-- 13. 市级 - 工业发展专项资金 -->
+                    <tr data-level="city">
+                        <td>13</td>
+                        <td><strong>龙岩市市级促进工业发展专项资金</strong></td>
+                        <td><span class="category-tag">企业培育</span></td>
+                        <td>龙岩市工信局/财政局</td>
+                        <td><span class="level-tag level-city">市级</span></td>
+                        <td>9-11月</td>
+                        <td class="amount">20-80</td>
+                        <td>
+                            <span class="tech-tag hw">环卫装备制造</span>
+                            <span class="tech-tag ai">智能环卫机器人</span>
+                            <span class="tech-tag sw">数字化管理平台</span>
+                        </td>
+                        <td>龙岩市注册规上工业企业；符合工业高质量发展方向；无重大安全环保事故；项目已投产或在建</td>
+                        <td>专项资金申请表、企业基本情况、项目实施报告、财务审计报告、相关资质证明</td>
+                        <td class="policy-ref"><a href="https://czj.longyan.gov.cn/xxgk/czdt/202512/t20251222_2265063.htm" target="_blank" rel="noopener">龙岩市市级促进工业发展专项资金管理办法（龙财规〔2025〕2号）<span class="ext-icon">&#8599;</span></a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 申报规划路线图 -->
+        <div style="margin-top: 30px;">
+            <h3 style="font-size: 17px; color: var(--primary); margin-bottom: 14px;">&#128197; 申报规划路线图（按时间窗口）</h3>
+            <div class="roadmap">
+                <div class="roadmap-quarter">
+                    <div class="roadmap-label">Q1<br><span style="font-size:11px;font-weight:400;color:var(--text-light)">1-3月</span></div>
+                    <div class="roadmap-items">
+                        <div class="roadmap-item province"><strong>&#9313;</strong> 先进级智能工厂<br><span style="opacity:0.7">1-3月 | 福建省工信厅</span></div>
+                        <div class="roadmap-item province"><strong>&#9313;</strong> 首台(套)重大技术装备<br><span style="opacity:0.7">3-6月 | 福建省工信厅</span></div>
+                        <div class="roadmap-item city"><strong>&#9324;</strong> 技术改造设备投资补助<br><span style="opacity:0.7">2-4月 | 龙岩市工信局</span></div>
+                    </div>
+                </div>
+                <div class="roadmap-quarter">
+                    <div class="roadmap-label">Q2<br><span style="font-size:11px;font-weight:400;color:var(--text-light)">4-6月</span></div>
+                    <div class="roadmap-items">
+                        <div class="roadmap-item national"><strong>&#9312;</strong> 制造业单项冠军<br><span style="opacity:0.7">5-7月 | 工信部</span></div>
+                        <div class="roadmap-item province"><strong>&#9312;</strong> 省级单项冠军<br><span style="opacity:0.7">6-7月 | 福建省工信厅</span></div>
+                        <div class="roadmap-item province"><strong>&#9320;</strong> 揭榜挂帅技术攻关<br><span style="opacity:0.7">4-6月 | 福建省科技厅</span></div>
+                        <div class="roadmap-item province"><strong>&#9323;</strong> 研发投入分段补助<br><span style="opacity:0.7">4-6月 | 福建省科技厅</span></div>
+                        <div class="roadmap-item province"><strong>&#9320;</strong> 节能装备专项<br><span style="opacity:0.7">4-6月 | 工信部等四部门</span></div>
+                    </div>
+                </div>
+                <div class="roadmap-quarter">
+                    <div class="roadmap-label">Q3<br><span style="font-size:11px;font-weight:400;color:var(--text-light)">7-9月</span></div>
+                    <div class="roadmap-items">
+                        <div class="roadmap-item national"><strong>&#9313;</strong> 绿色供应链管理企业<br><span style="opacity:0.7">6-9月 | 工信部</span></div>
+                    </div>
+                </div>
+                <div class="roadmap-quarter">
+                    <div class="roadmap-label">Q4<br><span style="font-size:11px;font-weight:400;color:var(--text-light)">10-12月</span></div>
+                    <div class="roadmap-items">
+                        <div class="roadmap-item national"><strong>&#9315;</strong> 中央预算内投资-节能降碳<br><span style="opacity:0.7">9-12月 | 国家发改委</span></div>
+                        <div class="roadmap-item national"><strong>&#9316;</strong> 中央预算内投资-污染治理<br><span style="opacity:0.7">9-12月 | 国家发改委</span></div>
+                        <div class="roadmap-item city"><strong>&#9325;</strong> 工业发展专项资金<br><span style="opacity:0.7">9-11月 | 龙岩市工信局</span></div>
+                    </div>
+                </div>
+                <div class="roadmap-quarter">
+                    <div class="roadmap-label">全年<br><span style="font-size:11px;font-weight:400;color:var(--text-light)">持续</span></div>
+                    <div class="roadmap-items">
+                        <div class="roadmap-item national"><strong>&#9314;</strong> 首台(套)保险补偿<br><span style="opacity:0.7">全年 | 工信部/财政部</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 归口部门项目分布 -->
+        <div style="margin-top: 30px;">
+            <h3 style="font-size: 17px; color: var(--primary); margin-bottom: 14px;">&#127970; 归口部门项目分布</h3>
+            <div class="unit-summary">
+                <div class="unit-card">
+                    <div class="unit-name">工信部/财政部</div>
+                    <div class="unit-count">4</div>
+                    <div class="unit-desc">单项冠军 / 绿色供应链 / 首台套 / 节能装备</div>
+                </div>
+                <div class="unit-card">
+                    <div class="unit-name">国家发改委</div>
+                    <div class="unit-count">2</div>
+                    <div class="unit-desc">中央预算内投资（节能降碳+污染治理）</div>
+                </div>
+                <div class="unit-card">
+                    <div class="unit-name">福建省工信厅</div>
+                    <div class="unit-count">3</div>
+                    <div class="unit-desc">单项冠军 / 首台套 / 智能工厂</div>
+                </div>
+                <div class="unit-card">
+                    <div class="unit-name">福建省科技厅</div>
+                    <div class="unit-count">2</div>
+                    <div class="unit-desc">揭榜挂帅 / 研发投入补助</div>
+                </div>
+                <div class="unit-card">
+                    <div class="unit-name">龙岩市工信局</div>
+                    <div class="unit-count">2</div>
+                    <div class="unit-desc">技改补助 / 工业发展专项</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== 2. 政策依据汇总 ===== -->
+    <div class="section" id="policy">
+        <div class="section-title">
+            <div class="icon">2</div>
+            政策依据汇总
+        </div>
+
+        <div class="card policy-card">
+            <h3>国家级政策文件</h3>
+            <div style="margin-top: 12px; font-size: 14px; line-height: 2.2;">
+                <div style="padding: 8px 12px; background: #fafafa; border-radius: 6px; margin-bottom: 8px;">
+                    <strong>1.</strong> 《制造业单项冠军企业遴选管理办法》——国家制造业单项冠军认定
+                </div>
+                <div style="padding: 8px 12px; background: #fafafa; border-radius: 6px; margin-bottom: 8px;">
+                    <strong>2.</strong> 《绿色制造体系建设管理办法》——国家绿色供应链管理企业认定
+                </div>
+                <div style="padding: 8px 12px; background: #fafafa; border-radius: 6px; margin-bottom: 8px;">
+                    <strong>3.</strong> 财政部、工信部首台(套)重大技术装备保险补偿政策
+                </div>
+                <div style="padding: 8px 12px; background: #fafafa; border-radius: 6px; margin-bottom: 8px;">
+                    <strong>4.</strong> <a href="https://www.ndrc.gov.cn/" target="_blank" rel="noopener">污染治理和节能减碳中央预算内投资专项管理办法<span class="ext-icon">&#8599;</span></a>
+                </div>
+                <div style="padding: 8px 12px; background: #fafafa; border-radius: 6px; margin-bottom: 8px;">
+                    <strong>5.</strong> <a href="http://finance.people.com.cn/n1/2026/0321/c1004-40686128.html" target="_blank" rel="noopener">《节能装备高质量发展实施方案（2026-2028年）》（工信部等四部门）<span class="ext-icon">&#8599;</span></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card policy-card">
+            <h3>福建省级政策文件</h3>
+            <div style="margin-top: 12px; font-size: 14px; line-height: 2.2;">
+                <div style="padding: 8px 12px; background: #fafafa; border-radius: 6px; margin-bottom: 8px;">
+                    <strong>1.</strong> <a href="https://gxt.fj.gov.cn/zwgk/zfxxgk/fdzdgknr/gzdt/202606/t20260603_7155747.htm" target="_blank" rel="noopener">福建省工信厅关于开展2026年省级制造业单项冠军企业申报工作的通知<span class="ext-icon">&#8599;</span></a>
+                </div>
+                <div style="padding: 8px 12px; background: #fafafa; border-radius: 6px; margin-bottom: 8px;">
+                    <strong>2.</strong> <a href="https://gxt.fj.gov.cn/zwgk/zfxxgk/fdzdgknr/" target="_blank" rel="noopener">《福建省制造业单项冠军企业管理实施细则》（闽工信规〔2024〕2号）<span class="ext-icon">&#8599;</span></a>
+                </div>
+                <div style="padding: 8px 12px; background: #fafafa; border-radius: 6px; margin-bottom: 8px;">
+                    <strong>3.</strong> <a href="http://gxt.fujian.gov.cn/zwgk/gsgg/202606/t20260618_7165051.htm" target="_blank" rel="noopener">《福建省首台(套)重大技术装备认定和扶持实施细则》及2026年新政（闽工信规〔2026〕4号）<span class="ext-icon">&#8599;</span></a>
+                </div>
+                <div style="padding: 8px 12px; background: #fafafa; border-radius: 6px; margin-bottom: 8px;">
+                    <strong>4.</strong> 闽工信函装备〔2026〕36号 福建省先进级智能工厂申报通知
+                </div>
+                <div style="padding: 8px 12px; background: #fafafa; border-radius: 6px; margin-bottom: 8px;">
+                    <strong>5.</strong> <a href="https://kjt.fujian.gov.cn/xxgk/tzgg/202605/t20260527_7153089.htm" target="_blank" rel="noopener">福建省科技厅关于征集2026年度省"揭榜挂帅"项目重大技术需求的通知<span class="ext-icon">&#8599;</span></a>
+                </div>
+                <div style="padding: 8px 12px; background: #fafafa; border-radius: 6px; margin-bottom: 8px;">
+                    <strong>6.</strong> 福建省企业研发投入分段补助管理办法
+                </div>
+            </div>
+        </div>
+
+        <div class="card policy-card">
+            <h3>龙岩市级政策文件</h3>
+            <div style="margin-top: 12px; font-size: 14px; line-height: 2.2;">
+                <div style="padding: 8px 12px; background: #fafafa; border-radius: 6px; margin-bottom: 8px;">
+                    <strong>1.</strong> <a href="https://gxj.longyan.gov.cn/xxgk/czzj/202602/t20260214_2277772.htm" target="_blank" rel="noopener">龙岩市2026年省级技术改造设备投资补助资金申报指南<span class="ext-icon">&#8599;</span></a>
+                </div>
+                <div style="padding: 8px 12px; background: #fafafa; border-radius: 6px; margin-bottom: 8px;">
+                    <strong>2.</strong> <a href="https://czj.longyan.gov.cn/xxgk/czdt/202512/t20251222_2265063.htm" target="_blank" rel="noopener">《龙岩市市级促进工业发展专项资金管理办法》（龙财规〔2025〕2号）<span class="ext-icon">&#8599;</span></a>
+                </div>
+                <div style="padding: 8px 12px; background: #fafafa; border-radius: 6px; margin-bottom: 8px;">
+                    <strong>3.</strong> <a href="https://gxj.longyan.gov.cn/xxgk/czzj/202409/t20240919_2154292.htm" target="_blank" rel="noopener">龙岩市工业和信息化局关于组织申报市级工业惠企政策奖补资金的通知<span class="ext-icon">&#8599;</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== 3. 重要提示 + 固定板块 ===== -->
+    <div class="section" id="tips">
+        <div class="card" style="background: #fffbeb; border-color: #f5deb3;">
+            <h3 style="color: #b8860b;">&#9888;&#65039; 重要提示</h3>
+            <p style="font-size: 13px; color: #8b7355; margin-top: 8px;">
+                本清单所列信息基于公开资料整理，仅供参考。具体申报条件、奖补金额和时间节点以各级主管部门发布的最新官方文件为准。建议企业密切关注工信部、国家发改委、福建省工信厅、福建省科技厅、龙岩市工信局等部门的年度申报通知，提前做好材料准备。预计奖补金额可能因政策调整而变化，部分项目奖补金额需根据实际投资额计算。特别说明：福龙马作为上交所主板上市企业，不适用专精特新"小巨人"等面向中小企业的认定项目。
+            </p>
+            <div class="lifecycle-bar">
+                <h4>&#128203; 项目申报全生命周期</h4>
+                <div class="lifecycle-steps">
+                    <div class="lifecycle-step">
+                        <div class="bar"></div>
+                        <div class="step-label">项目申报</div>
+                        <div class="step-pct">20%</div>
+                    </div>
+                    <div class="lifecycle-step">
+                        <div class="bar"></div>
+                        <div class="step-label">评审批复</div>
+                        <div class="step-pct">20%</div>
+                    </div>
+                    <div class="lifecycle-step">
+                        <div class="bar"></div>
+                        <div class="step-label">资金下达</div>
+                        <div class="step-pct">20%</div>
+                    </div>
+                    <div class="lifecycle-step" style="flex: 2;">
+                        <div class="bar"></div>
+                        <div class="step-label">结项验收</div>
+                        <div class="step-pct">40%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-bar">
+            <div class="contact-bar-title">&#128222; 项目咨询联系人</div>
+            <div class="contact-bar-name">赵璐红</div>
+            <div class="contact-bar-info">
+                <span class="cb-label">舍得酒业</span> &middot; 公共事务部总经理
+            </div>
+            <div class="contact-bar-sep"></div>
+            <div class="contact-bar-info">
+                <span class="cb-label">电话</span> <a href="tel:18884606786">18884606786</a>
+            </div>
+            <div class="contact-bar-sep"></div>
+            <div class="contact-bar-info">
+                <span class="cb-label">地址</span> 四川省成都市武侯区复地复城国际T1
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ 折叠面板区域 ═══ -->
+    <div class="collapse-group" id="company">
+        <div class="collapse-group-title">&#9660; 企业详情（点击展开） &#9660;</div>
+
+        <details class="collapse-section">
+            <summary>&#127970; 企业概述</summary>
+            <div class="collapse-body">
+                <div class="card">
+                    <p>福龙马集团股份有限公司（股票代码：603686.SH）成立于2002年，2015年在上交所主板上市，是国内首家专注于环境卫生领域的A股上市公司。公司总部位于福建省龙岩市永定区高陂镇，注册资本41543.04万元，法定代表人为张西泠。公司主营业务涵盖智能装备制造（环卫车辆、环卫机器人等）和环境生态运营服务（城市环卫服务），是环卫装备行业的领军企业。公司拥有博士后科研工作站、省级企业技术中心和省级环境工程研究中心等研发平台，累计获得专利625项。截至2025年末，公司营业总收入49.26亿元，净利润1.55亿元。</p>
+                </div>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="label">企业全称</div>
+                        <div class="value">福龙马集团股份有限公司</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="label">成立年份</div>
+                        <div class="value">2002年</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="label">注册资本</div>
+                        <div class="value">41,543.04万元</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="label">法定代表人</div>
+                        <div class="value">张西泠</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="label">股票代码</div>
+                        <div class="value">603686.SH（上交所主板）</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="label">注册地址</div>
+                        <div class="value">福建省龙岩市永定区高陂镇</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="label">2025年营收</div>
+                        <div class="value">49.26亿元</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="label">企业性质</div>
+                        <div class="value">上市民营企业</div>
+                    </div>
+                </div>
+            </div>
+        </details>
+
+        <details class="collapse-section">
+            <summary>&#9881; 主营业务</summary>
+            <div class="collapse-body">
+                <div class="card">
+                    <p>福龙马聚焦环境卫生领域，形成"智能装备制造+环境生态运营"双轮驱动的业务格局。在智能装备方面，公司涵盖传统燃油环卫车辆、新能源环卫车辆、无人驾驶环卫机器人等产品线，是全球首款基于滑板底盘的无人驾驶环卫车的研发企业。在环境运营方面，公司在全国多地承接城市环卫服务项目，推动作业机械化、装备智能化、城市智慧化转型，连续多年获评"环卫十大影响力企业"。</p>
+                </div>
+                <div class="biz-grid">
+                    <div class="biz-card">
+                        <div class="biz-icon" style="background: #e8fde8;">&#128666;</div>
+                        <h4>环卫专用车辆制造</h4>
+                        <p>研发生产扫路车、洗扫车、垃圾车、洒水车等系列环卫专用车辆，覆盖燃油和新能源两大动力平台，市场占有率行业前列。</p>
+                    </div>
+                    <div class="biz-card">
+                        <div class="biz-icon" style="background: #fde8f4;">&#129302;</div>
+                        <h4>新能源与无人驾驶环卫</h4>
+                        <p>全球首款滑板底盘无人驾驶环卫车，布局纯电动、氢燃料等新能源环卫装备，推动环卫作业无人化和智能化转型。</p>
+                    </div>
+                    <div class="biz-card">
+                        <div class="biz-icon" style="background: #e8f4fd;">&#127961;</div>
+                        <h4>城市环卫运营服务</h4>
+                        <p>在全国多个城市承接市政环卫服务项目，提供城市道路清扫、垃圾收运、公厕管理等一体化环境生态运营服务。</p>
+                    </div>
+                    <div class="biz-card">
+                        <div class="biz-icon" style="background: #f3e8fd;">&#128187;</div>
+                        <h4>智慧环卫管理系统</h4>
+                        <p>自主研发智慧环卫管理平台，实现环卫作业数字化调度、车辆智能监控、垃圾分类溯源等功能，赋能城市精细化治理。</p>
+                    </div>
+                </div>
+            </div>
+        </details>
+
+        <details class="collapse-section">
+            <summary>&#127942; 已获得的资质与荣誉</summary>
+            <div class="collapse-body">
+                <div class="card">
+                    <h3>国家级资质与荣誉</h3>
+                    <div class="badge-group">
+                        <span class="badge badge-national">&#127942; 国家高新技术企业</span>
+                        <span class="badge badge-national">&#127942; 国家火炬计划重点高新技术企业</span>
+                        <span class="badge badge-national">&#127942; 国家级绿色工厂</span>
+                        <span class="badge badge-national">&#127942; 全国模范劳动关系和谐企业</span>
+                        <span class="badge badge-national">&#127942; 中国驰名商标</span>
+                        <span class="badge badge-national">&#127942; 博士后科研工作站</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>省市级资质与荣誉</h3>
+                    <div class="badge-group">
+                        <span class="badge badge-province">&#127941; 福建省智能制造试点示范企业</span>
+                        <span class="badge badge-province">&#127941; 福建省百强民营企业</span>
+                        <span class="badge badge-province">&#127941; 省级企业技术中心</span>
+                        <span class="badge badge-province">&#127941; 省级环境工程研究中心</span>
+                        <span class="badge badge-city">&#127941; 环卫十大影响力企业（连续五年）</span>
+                    </div>
+                    <p style="margin-top: 12px; font-size: 12px; color: var(--text-light); font-style: italic;">注：天眼查显示的"专精特新中小企业"标签可能为上市前获得的省级认定或数据滞后。上交所主板上市企业通常不在专精特新"小巨人"培育范围内。</p>
+                </div>
+            </div>
+        </details>
+
+        <details class="collapse-section">
+            <summary>&#128203; 近三年项目申请情况（2024-2026）</summary>
+            <div class="collapse-body">
+                <div class="card">
+                    <p>以下为根据公开资料整理的福龙马集团近三年主要政府项目及资质认定情况。</p>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="year">2025年</div>
+                        <h4>新能源环卫装备持续研发与市场推广</h4>
+                        <p>全球首款滑板底盘无人驾驶环卫车研发落地；持续中标全国多个城市环卫服务项目，合同金额累计超亿元。 <span class="status-done">已实施</span></p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="year">2024年</div>
+                        <h4>环卫十大影响力企业（连续五年获评）</h4>
+                        <p>持续获评"2024年度环卫十大影响力企业"，体现行业领先地位。 <span class="status-done">已通过</span></p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="year">2024年</div>
+                        <h4>国家级绿色工厂认定</h4>
+                        <p>入选工信部绿色工厂名单，持续保持国家级绿色制造示范地位。 <span class="status-done">已通过</span></p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="year">2024-2025年</div>
+                        <h4>发明专利持续布局</h4>
+                        <p>累计获得专利625项，涵盖新能源环卫车辆、无人驾驶技术、智能作业系统等领域。 <span class="status-done">持续中</span></p>
+                    </div>
+                </div>
+            </div>
+        </details>
+    </div>
+
+</div>
+
+<div class="footer">
+    福龙马集团股份有限公司 &middot; 2026年度奖补项目申报清单 &middot; 仅供内部参考使用 &middot; 编制日期：2026年6月22日
+</div>
+
+<script>
+    document.querySelectorAll('.nav a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelectorAll('.nav a').forEach(a => a.classList.remove('active'));
+            this.classList.add('active');
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) { target.scrollIntoView({ behavior: 'smooth' }); }
+        });
+    });
+    function filterTable(level) {
+        const rows = document.querySelectorAll('#projectTable tbody tr');
+        const buttons = document.querySelectorAll('.filter-btn');
+        buttons.forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+        rows.forEach(row => {
+            if (level === 'all' || row.dataset.level === level) { row.style.display = ''; }
+            else { row.style.display = 'none'; }
+        });
+    }
+    window.addEventListener('scroll', () => {
+        const sections = document.querySelectorAll('.section, .collapse-group');
+        const navLinks = document.querySelectorAll('.nav a');
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 140;
+            if (window.scrollY >= sectionTop) { current = section.getAttribute('id'); }
+        });
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + current) { link.classList.add('active'); }
+        });
+    });
+    document.querySelector('.nav a[href="#company"]').addEventListener('click', function() {
+        setTimeout(() => { document.querySelectorAll('.collapse-section').forEach(d => d.open = true); }, 400);
+    });
+</script>
+
+</body>
+</html>
